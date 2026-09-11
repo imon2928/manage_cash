@@ -1,0 +1,25 @@
+{% extends 'ManageCash/base.html' %}
+{% block content %}
+<div class="bg-white shadow rounded p-6">
+  <h2 class="text-2xl font-semibold mb-4">Edit Cash Entry</h2>
+  <form method="post" class="space-y-4">
+    {% csrf_token %}
+    <div>
+      <label for="source" class="block text-sm font-medium text-gray-700">Source</label>
+      <input type="text" name="source" id="source" value="{{ cash.source }}" class="mt-1 block w-full px-3 py-2 border rounded-md" required>
+    </div>
+    <div>
+      <label for="amount" class="block text-sm font-medium text-gray-700">Amount</label>
+      <input type="text" name="amount" id="amount" value="{{ cash.amount }}" class="mt-1 block w-full px-3 py-2 border rounded-md" required>
+    </div>
+    <div>
+      <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+      <textarea name="description" id="description" class="mt-1 block w-full px-3 py-2 border rounded-md" rows="3">{{ cash.description }}</textarea>
+    </div>
+    <div class="flex space-x-2">
+      <button class="px-4 py-2 bg-green-600 text-white rounded" type="submit">Update</button>
+      <a class="px-4 py-2 bg-gray-200 text-gray-800 rounded" href="{% url 'dashboard' %}">Cancel</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

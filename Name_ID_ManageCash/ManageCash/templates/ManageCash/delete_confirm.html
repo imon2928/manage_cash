@@ -1,0 +1,22 @@
+{% extends 'ManageCash/base.html' %}
+{% block content %}
+<div class="bg-white shadow rounded p-6 max-w-md mx-auto">
+  <h2 class="text-xl font-semibold mb-4 text-red-600">Confirm Delete</h2>
+  <p class="mb-6 text-gray-700">
+    Are you sure you want to delete this {% if type == 'income' %}income{% else %}expense{% endif %} entry?
+  </p>
+  <div class="p-4 bg-gray-50 rounded mb-6 text-sm">
+    <p><strong>Amount:</strong> {{ item.amount }}</p>
+    {% if type == 'income' %}
+      <p><strong>Source:</strong> {{ item.source }}</p>
+    {% endif %}
+    <p><strong>Description:</strong> {{ item.description }}</p>
+    <p><strong>Date:</strong> {{ item.datetime }}</p>
+  </div>
+  <form method="post" class="flex space-x-2 justify-end">
+    {% csrf_token %}
+    <a class="px-4 py-2 bg-gray-200 text-gray-800 rounded" href="{% url 'dashboard' %}">Cancel</a>
+    <button class="px-4 py-2 bg-red-600 text-white rounded" type="submit">Delete</button>
+  </form>
+</div>
+{% endblock %}
